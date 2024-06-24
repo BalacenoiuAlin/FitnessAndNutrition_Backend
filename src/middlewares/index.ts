@@ -1,8 +1,11 @@
-import express from 'express';
-import { get, merge } from 'lodash';
+import { Request, Response, NextFunction } from 'express';
 import { getUserBySessionToken } from '../db/users';
 
-export const isAuthenticated = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+interface AuthenticatedRequest extends Request {
+    identity?: { email: string };
+}
+
+export const isAuthenticated = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     try {
         const sessionToken = req.cookies['ANTONIO-AUTH'];
 
@@ -16,7 +19,7 @@ export const isAuthenticated = async (req: express.Request, res: express.Respons
             return res.sendStatus(403);
         }
 
-        merge(req, { identity: existingUser });
+        req.identity = { email: existingUser.email };
 
         return next();
     } catch (error) {
