@@ -29,8 +29,8 @@ export const login = async (req: Request, res: Response) => {
 
         res.cookie('ANTONIO-AUTH', user.authentication.sessionToken, {
             httpOnly: true,
-            secure: false, // Set to true if using HTTPS
-            domain: '192.168.1.4', // Ensure this matches your frontend domain
+            secure: false, 
+            domain: '192.168.1.4',
             path: '/',
         });
 

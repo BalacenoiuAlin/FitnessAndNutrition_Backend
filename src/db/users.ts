@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
     desiredWeight: { type: Number, required: true },
     height: { type: Number, required: true },
     goal: { type: String, required: true },
+    activity: {type: String, required: true},
     authentication: {
         password: { type: String, required: true, select: false },
         salt: { type: String, select: false },
