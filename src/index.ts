@@ -11,7 +11,7 @@ const app = express();
 
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:8082' // Replace with your frontend IP address and port
+    origin: 'http://:' // put the frontend ip and port here
 }));
 
 app.use(compression());
@@ -21,10 +21,10 @@ app.use(bodyParser.json());
 const server = http.createServer(app);
 
 server.listen(8081, () => {
-    console.log('Server running on http://localhost:8081/');
+    console.log('Server running on http://:/'); // put your ip and port here for backend
 });
 
-const MONGO_URL = 'mongodb+srv://alinbalacenoiu02:S56b391m01ABC@cluster0.ax6gtht.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const MONGO_URL = '';// put your cluster here from mongodb
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
